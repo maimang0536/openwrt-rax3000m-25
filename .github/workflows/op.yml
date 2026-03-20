@@ -7,17 +7,17 @@ on:
       OP_IP:
         description: '静态IP地址'     
         required: false
-        default: '192.168.2.1' 
+        default: '192.168.123.1' 
         type: string
       OP_author:
         description: '定制作者'     
         required: false
-        default: 'shiyu1314' 
+        default: 'Firewll' 
         type: string    
       CUSTOM_PLUGINS:
         description: '自定义插件名称，用空格分隔'
         required: false
-        default: 'luci-theme-aurora luci-app-ttyd luci-app-diskman luci-app-momo'
+        default: 'luci-theme-aurora luci-theme-material3 luci-app-ttyd luci-app-diskman luci-app-samba4 luci-app-mosdns luci-app-openvpn-server luci-proto-wireguard luci-app-ddns luci-app-upnp luci-app-homeproxy'
         type: string
 
 env:
@@ -127,7 +127,6 @@ jobs:
       run: |
         set -x
         cd $SOURCE_NAME
-        find ./staging_dir/ -name '*' -exec touch {} \; >/dev/null 2>&1
         ./scripts/feeds update -a
         cd .. 
         [ -e patch ] && cp -rf patch/diy/*.patch $SOURCE_NAME
